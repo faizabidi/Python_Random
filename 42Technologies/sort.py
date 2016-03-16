@@ -28,7 +28,7 @@ for key, value in sorted(d.iteritems()):
 headers = ['property0','property1','property2','net_sales','net_sales_units']
 
 #write the data to a file
-with open ("new_data.tsv", "wb") as myfile:
+with open ("newData.tsv", "wb") as myfile:
 	wr = csv.writer(myfile, delimiter = '|')
 	wr.writerow (headers)
 	wr.writerows(lst)
