@@ -22,7 +22,7 @@ for rows in input_file:
 
 #convert sorted dictionary to list
 for key, value in sorted(d.iteritems()):
-    value = [value]
+    #value = [value]
     lst.append(value)
 
 headers = ['property0','property1','property2','net_sales','net_sales_units']
