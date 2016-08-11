@@ -5,6 +5,10 @@ from sys import argv
 
 script, VM_NAME = argv
 
+# find the instance name using the VM name provided
+
+INSTANCE_NAME = check_output("nova list --field instance_name,name | grep '%s' | awk '{print $4}'" %VM_NAME, shell=True).rstrip()
+
 #check all the available virtual PCI devices avaialble
 #we have only created 8 virtual functions
 pci_devices_all = check_output("virsh nodedev-list --cap pci | grep 06", shell=True).split ()
@@ -46,6 +50,6 @@ new_file.close ()
 xml_file = "/tmp/file.xml"
 
 #attach this XML file to the VM
-print  (VM_NAME, xml_file)
-call("sudo virsh attach-device '%s' '%s'" % (VM_NAME, xml_file), shell=True)
+print  (INSTANCE_NAME, xml_file)
+call("sudo virsh attach-device '%s' '%s'" % (INSTANCE_NAME, xml_file), shell=True)
 
