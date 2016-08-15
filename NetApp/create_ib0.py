@@ -23,7 +23,7 @@ except IOError:
 	sys.exit(1)
 
 # activate ib0
-retcode = call("sudo mv ifcfg-ib0 /etc/sysconfig/network-scripts && sudo ifup ib0", shell=True)
+retcode = call("sudo mv ifcfg-ib0 /etc/sysconfig/network-scripts && sudo /usr/sbin/ifup ib0", shell=True)
 if retcode == 1:
 	print ("Error activating ib0")
         sys.exit(1)
