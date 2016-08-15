@@ -6,9 +6,9 @@ import sys
 script, VM_NAME = sys.argv
 
 # find the instance name using the VM name provided
-retcode = call("nova list", shell=True)
+retcode = call("nova --os-username=admin --os-project-name=admin --os-auth-url=http://10.250.117.53:5000/v2.0 --os-password=12f19b536fb94c91 list", shell=True)
 if retcode == 0:
-	INSTANCE_NAME = check_output("nova list --field instance_name,name | grep '%s' | awk '{print $4}'" %VM_NAME, shell=True).rstrip()
+	INSTANCE_NAME = check_output("nova --os-username=admin --os-project-name=admin --os-auth-url=http://10.250.117.53:5000/v2.0 --os-password=12f19b536fb94c91 list --field instance_name,name | grep '%s' | awk '{print $4}'" %VM_NAME, shell=True).rstrip()
 else:
 	print("Couldn't get list of nova instances. Terminating...")
 	sys.exit(1)
