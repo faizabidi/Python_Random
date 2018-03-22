@@ -1,3 +1,5 @@
+# Run it with python3
+
 import numpy as np
 import cmath
 from elasticsearch import helpers, Elasticsearch
