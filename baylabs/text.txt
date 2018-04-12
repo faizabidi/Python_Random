@@ -1,0 +1,12 @@
+Total number of bytes in the file is 7898328
+Bytes left after removing the header is 7897088
+246783
+<class 'numpy.ndarray'>
+(1024, 241)
+[[  0  81  66 ...  84  70  39]
+ [ 20  36  48 ...   6   1   4]
+ [  2   8  15 ...   8   8   0]
+ ...
+ [112 104 108 ...  98  84  63]
+ [ 66  79  90 ...   0   2   5]
+ [  3   5   5 ...   7   0   0]]
