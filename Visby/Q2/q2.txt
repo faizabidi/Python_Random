@@ -1,0 +1,54 @@
+Method 1:
+
+Since I have used Convolutional Neural Network (CNN)for one of my class projects,
+a solution that I can think of to solve the given problem is training a CNN and 
+using that to predict the underlying geometry of the 3D point cloud. 
+
+Advantages: Building a CNN won’t only be restricted to Platonic solids. We can easily
+scale the solution to make similar predictions about cones, spheres, etc. 
+
+Drawbacks: Since this will be a supervised learning classification algorithm, we will
+need a big set of marked up data to begin with. Getting this labelled data may not be 
+easy as well as time consuming. Also, to improve our prediction model, we also need to 
+work on tweaking the weights and the learning rates alpha and beta. There are several 
+ways that we can do this like tuning the Hyperparameters, applying regularization, 
+and optimization but this will be a learning curve if someone doesn’t have a background in
+DeepLearning. 
+
+Method 2:
+ 
+Since we are only dealing with Platonic solids, we can have 5 classes where each class represents
+a type of Platonic solid. 
+
+a) Tetrahedron - 4 vertices, 4 triangle faces
+b) Cube - 8 vertices, 6 square faces
+c) Octahedron - 6 vertices, 8 triangle faces
+d) Polyhedra - 20 vertices, 12 pentagonal faces
+e) Icosahedron - 12 vertices, 20 triangle faces
+
+Each class will check for the conditions described above. Consider that we have a point cloud 
+representing a tetrahedron. But we don’t know that yet when we randomly select a 3D point from 
+our dataset. 
+
+Step 1: Let this point be (x,y,z).
+
+Step 2: From this point, start drawing a tangent in any direction, let’s say negative x direction. 
+We keep drawing the tangent till we hit a boundary line of the Platonic solid. 
+
+Step 3: From the boundary point, the idea is to keep following the boundary using recursion. 
+
+
+
+Some popular algorithms that I found when I did a little literature review that can
+help with surface reconstruction from point cloud data include:
+
+1. The Power Crust - http://web.cs.ucdavis.edu/~amenta/pubs/sm.pdf
+2. Ball-Pivoting algorithm - https://ieeexplore.ieee.org/document/817351/
+3. Hoppe’s algorithm - http://hhoppe.com/proj/thesis/
+4. Poisson algorithm - http://www.cs.jhu.edu/~misha/MyPapers/ISVC09.pdf
+5. MPU algorithm - http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.8.2916
+
+
+
+
+ 
