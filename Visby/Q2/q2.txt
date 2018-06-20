@@ -1,10 +1,10 @@
-Method 1:
+Possible solution 1:
 
 Since I have used Convolutional Neural Network (CNN)for one of my class projects,
 a solution that I can think of to solve the given problem is training a CNN and 
 using that to predict the underlying geometry of the 3D point cloud. 
 
-Advantages: Building a CNN won’t only be restricted to Platonic solids. We can easily
+Advantages: Building a CNN won’t only be restricted to Platonic solids. We can
 scale the solution to make similar predictions about cones, spheres, etc. 
 
 Drawbacks: Since this will be a supervised learning classification algorithm, we will
@@ -13,9 +13,9 @@ easy as well as time consuming. Also, to improve our prediction model, we also n
 work on tweaking the weights and the learning rates alpha and beta. There are several 
 ways that we can do this like tuning the Hyperparameters, applying regularization, 
 and optimization but this will be a learning curve if someone doesn’t have a background in
-DeepLearning. 
-
-Method 2:
+DeepLearning. We will also need some kind of noise removal process. 
+##################################################################
+Possible solution 2:
  
 Since we are only dealing with Platonic solids, we can have 5 classes where each class represents
 a type of Platonic solid. 
@@ -26,19 +26,33 @@ c) Octahedron - 6 vertices, 8 triangle faces
 d) Polyhedra - 20 vertices, 12 pentagonal faces
 e) Icosahedron - 12 vertices, 20 triangle faces
 
-Each class will check for the conditions described above. Consider that we have a point cloud 
-representing a tetrahedron. But we don’t know that yet when we randomly select a 3D point from 
-our dataset. 
+Step 1. Assuming I remove all the noise (using something like https://goo.gl/BK7NPg), find 
+three points in my dataset that are collinear. Using these points, find an equation of the plane.
 
-Step 1: Let this point be (x,y,z).
+Step 2. Using this equation of the plane, find all the points in the dataset that satisfy 
+this equation (1 face found).
 
-Step 2: From this point, start drawing a tangent in any direction, let’s say negative x direction. 
-We keep drawing the tangent till we hit a boundary line of the Platonic solid. 
+Step 3. Repeat steps 1 and 2 on the rest of the points.
 
-Step 3: From the boundary point, the idea is to keep following the boundary using recursion. 
+Step 4. At the end, we will have the number of faces in our Platonic solid and based on that
+I can tell if it's a Tetrahedron, Cube, Octahedron, Polyhedra, or a Icosahedron.
 
+Step 5: While keeping a count of the number of faces, if at any point the number goes 
+beyond 12, we can stop our algorithm because at that point we would know that it is a Icosahedron.
 
+Advantages: This approach is better than the first approach because we don’t need any 
+labelled data here to begin with. 
 
+Disadvantages: The time and space complexity of this solution is not optimal. If there were a 
+billion points, finding three collinear points would take nC3 operations. And then we will 
+have to traverse through all the points.  Also, although this approach may work for Platonic
+solids because they have different number of faces, this algorithm will fail in case of two
+solids with equal number of faces (squares vs. rectangles). 
+##################################################################
+
+Other possible solutions
+
+##################################################################
 Some popular algorithms that I found when I did a little literature review that can
 help with surface reconstruction from point cloud data include:
 
@@ -47,8 +61,11 @@ help with surface reconstruction from point cloud data include:
 3. Hoppe’s algorithm - http://hhoppe.com/proj/thesis/
 4. Poisson algorithm - http://www.cs.jhu.edu/~misha/MyPapers/ISVC09.pdf
 5. MPU algorithm - http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.8.2916
+6. Marching cubes - http://paulbourke.net/geometry/polygonise/
+7. Convex Hull - http://mathworld.wolfram.com/ConvexHull.html
 
-
-
-
- 
+Some of the ideas that I had were similar to these. That’s why I have intentionally not described 
+them above and only kept the ones for which I didn’t find any corresponding research paper. 
+But my Googling may not be exhaustive and the solutions that I proposed above may already exist in
+some form. 
+##################################################################
